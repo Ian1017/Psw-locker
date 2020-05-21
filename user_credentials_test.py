@@ -30,10 +30,39 @@ class TestUser(unittest.TestCase):
         Test case to test if the user object is saved to the users list.
         '''
         self.new_user.save_user()
-        self.assertEqual(len(User.user_list, 1))
-
-
         
+
+
+class TestCredentials(unittest.TestCase):
+    '''
+    Test class that defines test cases for the credentials class behaviours.
+    
+    Args:
+    unittest.TestCase: TestCase class that helps in creating test cases.
+    '''
+
+    def setUp(self):
+        '''
+        Set up method to run before each test cases.
+        '''
+
+        self.new_credential = Credentials("Pop", "Instagram", "realpopsmoke", "woobackbaby")
+
+
+    def test__init__(self):
+        '''
+        Test case to check if creation of credential instances is properly done.
+        '''
+
+        self.assertEqual(self.new_credential.user_name, "Pop")
+        self.assertEqual(self.new_credential.site_name, "Instagram")
+        self.assertEqual(self.new_credential.account_name, "realpopsmoke")
+        self.assertEqual(self.new_credential.passwprd, "woobackbaby")
+        
+
+
+
+
 
 if __name__ == '__main__':
     unittest.main()
