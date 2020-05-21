@@ -71,7 +71,14 @@ class TestCredentials(unittest.TestCase):
         self.assertEqual(len(Credentials.credentials_list), 2)
 
 
-    
+    def tearDown(self):
+        '''
+        A method that clears the users credentials list after every test'.
+        '''
+
+        Credentials.credentials_list = []
+        User.users_list = []
+
     def test_display_credentials(self):
         '''
         Test case to test if our objects show.
@@ -82,9 +89,20 @@ class TestCredentials(unittest.TestCase):
         facebook.save_credential()
         gmail = Credentials('Jane','Gmail','maryjoe','pswd200')
         gmail.save_credential()
-        self.assertEqual(len(Credentials.display_credential(facebook.user_name)), 2)
+        self.assertEqual(len(Credentials.display_credential(facebook.user_name)), 1)
 
 
+    def test_find_by_site_name(self):
+        '''
+        Test case to test if we can search credential by site_name and return the correct credential.
+        '''
 
+        self.new_credential.save_credential()
+        gmail = Credentials('Jane','Gmail','maryjoe','pswd200')
+        gmail.save_credential()
+        credential_exists = Credentials.test_find_by_site_name('Gmail')
+        self.assertEqual(credential_exists, gmail)
+
+        
 if __name__ == '__main__':
     unittest.main()
