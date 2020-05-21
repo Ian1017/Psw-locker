@@ -1,5 +1,5 @@
 import unittest
-from user_credentials import User
+from user_credentials import User, Credentials
 
 class TestUser(unittest.TestCase):
     '''
@@ -57,8 +57,8 @@ class TestCredentials(unittest.TestCase):
         self.assertEqual(self.new_credential.user_name, "Pop")
         self.assertEqual(self.new_credential.site_name, "Instagram")
         self.assertEqual(self.new_credential.account_name, "realpopsmoke")
-        self.assertEqual(self.new_credential.passwprd, "woobackbaby")
-        
+        self.assertEqual(self.new_credential.password, "woobackbaby")
+
 
 
 
