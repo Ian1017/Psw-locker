@@ -60,7 +60,12 @@ class TestCredentials(unittest.TestCase):
         self.assertEqual(self.new_credential.password, "woobackbaby")
 
 
+    def test_save_credentials(self):
+        '''
+        Test case to check if we can save credentials to the credentials list.
+        '''
 
+        self.new_credential.test_save_credential()
 
 
 
