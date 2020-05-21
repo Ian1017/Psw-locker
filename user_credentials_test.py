@@ -66,6 +66,23 @@ class TestCredentials(unittest.TestCase):
         '''
 
         self.new_credential.test_save_credential()
+        facebook = credentials("Lawsons", "Facebook", "william", "mombasa@69")
+        facebook.save_credential()
+        self.assertEqual(len(Credentials.credentials_list), 2)
+
+
+    
+    def test_display_credentials(self):
+        '''
+        Test case to test if our objects show.
+        '''
+
+        self.new_credential.save_credential()
+        facebook = Credentials("Lawsons", "Facebook", "william", "mombasa@69")
+        facebook.save_credential()
+        gmail = Credentials('Jane','Gmail','maryjoe','pswd200')
+        gmail.save_credential()
+        self.assertEqual(len(Credentials.display_credential(facebook.user_name)), 2)
 
 
 
