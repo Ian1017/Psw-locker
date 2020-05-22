@@ -1,6 +1,6 @@
-import string
 import pyperclip
 import random
+import string
 
 class User:
     '''
@@ -32,6 +32,17 @@ class Credentials:
 
     credentials_list = []
     users_credentials_list = []
+
+    @classmethod
+    def check_user(cls, first_name, password):
+        '''
+        Method that checks if the name and password entered match entries in the users list.
+        '''
+        current_user = ''
+        for user in User.users_list:
+            if (user.first_name == first_name and user.password == password):
+                current_user = user.first_name
+        return current_user
 
     def __init__(self, user_name, site_name, account_name, password):
         '''
@@ -76,7 +87,7 @@ class Credentials:
 
 
     @classmethod
-    def copy_credential(cls, password):
+    def copy_credential(cls, site_name):
         '''
         Class method that a copies a credential details after the credentials site_name has been entered
         '''

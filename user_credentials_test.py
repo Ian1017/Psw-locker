@@ -1,4 +1,5 @@
 import unittest
+import pyperclip
 from user_credentials import User, Credentials
 
 class TestUser(unittest.TestCase):
@@ -30,7 +31,7 @@ class TestUser(unittest.TestCase):
         Test case to test if the user object is saved to the users list.
         '''
         self.new_user.save_user()
-        
+        self.assertEqual(len(User.users_list), 1)
 
 
 class TestCredentials(unittest.TestCase):
@@ -40,6 +41,24 @@ class TestCredentials(unittest.TestCase):
     Args:
     unittest.TestCase: TestCase class that helps in creating test cases.
     '''
+
+    
+    def test_check_user(self):
+        '''
+        Test case to test whether login feature is functional.
+        '''
+        self.new_user = User('Pop', 'Smoke', 'big092')
+        self.new_user.save_user()
+        user2 = User('Essy', 'Messi', 'bigpoppa16')
+        user2.save_user()
+
+    for user in User.users_list:
+        if user.first_name == user2.first_name and user.password == user2.password:
+            current_user = user.first_name
+        return current_user
+
+        self.assertEqual(current_user, Credentials.check_user(user2.password, user2.first_name))
+
 
     def setUp(self):
         '''
@@ -103,6 +122,23 @@ class TestCredentials(unittest.TestCase):
         credential_exists = Credentials.test_find_by_site_name('Gmail')
         self.assertEqual(credential_exists, gmail)
 
+    def test_copy_credential(self):
+        '''
+        Test case to test if the copy credential function copies the correct credential.
+        '''
+
+        self.new_credential.save_credential()
+        instagram = Credentials('Pop', 'Instagram', 'realpopsmoke', 'woobackbaby')
+        instagram.save_credential()
+        find_credential = None
+        for credential in Credentials.users_credentials_list:
+            find_credential = Credentials.find_by_site_name(credential.site_name)
+            return pyperclip.copy(find_credential.password)
+        Credentials.copy_credential(self.new_credential.site_name)
+        self.assertEqual('woobackbaby', pyperclip.paste())
+        print(pyperclip.paste())
+
+
         
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(verbosity=2)
